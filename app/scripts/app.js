@@ -22,7 +22,7 @@ angular
     'thatisuday.ng-image-gallery',
     'angularValidator',
     'scrollable-table',
-    'ngMap'
+    'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider) {
     var mainState = {

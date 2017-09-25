@@ -1,10 +1,11 @@
 <!doctype html>
-<html>
-  <head>
+<html ng-app="transnvAdminFrontendApp">
+<head>
     <meta charset="utf-8">
-    <title></title>
+    <title ng-bind="title + ' - In Excelsis Deo Admin'">In Excelsis Deo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" type="image/png" href="/logo.ico"/>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -16,61 +17,122 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="transnvAdminFrontendApp">
-    <!--[if lte IE 8]>
+</head>
+<body>
+     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">transnvAdminFrontend</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div style="display: none;" id="sidebar-wrapper">
+            <ul class="sidebar-nav" ng-cloak>
+                <li class="sidebar-brand">
+                    <a class="navbar-brand" ng-href="#/">
+                        <img class="img-responsive" src="images/logo.jpg" alt="In Excelsis Deo"/>
+                    </a>
+                </li>
+                <li>
+                    Usuario: {{ user.username }}
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'infoGeneral'}" ng-href="#/info-general">Información General</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'productos'}" ng-href="#/productos">Productos</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'servicios'}" ng-href="#/servicios">Servicios</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'proyectos'}" ng-href="#/proyectos">Proyectos</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'galeria'}" ng-href="#/galeria">Galería</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'fondos'}" ng-href="#/fondos">Fondos</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'roles'}" ng-href="#/roles">Roles</a>
+                </li>
+                <li>
+                    <a ng-class="{active: $route.current.controllerAs === 'users'}" ng-href="#/users">Usuarios</a>
+                </li>
+                <li>
+                    <a style="cursor: pointer;" ng-click="logout()">Log out</a>
+                </li>
             </ul>
-          </div>
         </div>
-      </div>
+        <!-- /#sidebar-wrapper -->
+        <nav id="topbar-wrapper" class="navbar navbar-fixed-top navbar-default visible-xs">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" ng-href="#/">
+                        <img class="logo-brand img-responsive" src="images/logo.png" alt="In Excelsis Deo"/>
+                    </a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav">
+                        <li ng-class="{active: $route.current.controllerAs === 'infoGeneral'}">
+                            <a ng-href="#/info-general">Información General</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'productos'}">
+                            <a ng-href="#/productos">Productos</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'servicios'}">
+                            <a ng-href="#/servicios">Servicios</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'proyectos'}">
+                            <a ng-href="#/proyectos">Proyectos</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'galeria'}">
+                            <a ng-href="#/galeria">Galería</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'fondos'}">
+                            <a ng-href="#/fondos">Fondos</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'roles'}">
+                            <a ng-href="#/roles">Roles</a>
+                        </li>
+                        <li ng-class="{active: $route.current.controllerAs === 'users'}">
+                            <a ng-href="#/users">Usuarios</a>
+                        </li>
+                        <li>
+                            <a style="cursor: pointer;" ng-click="logout()">Log out</a>
+                        </li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                
+                <div id="dvMessageRoot" class="alert alert-dismissible dvHidden" ng-class="{'alert-success': message_root.type === 'success', 'alert-danger': message_root.type === 'error'}" role="alert" ng-show="message_root.type !== undefined">
+                    <button type="button" class="close" ng-click="message_root.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message_root.text }} 
+                </div>
+                <div ng-view>
+
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-
-    <div class="container">
-    <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -91,24 +153,23 @@
     <script src="bower_components/tg-angular-validator/dist/angular-validator.js"></script>
     <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="bower_components/angular-scrollable-table/angular-scrollable-table.js"></script>
-    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/slides.js"></script>
-        <script src="scripts/controllers/infos.js"></script>
-        <script src="scripts/controllers/ubicacion.js"></script>
-        <script src="scripts/controllers/noticias.js"></script>
-        <script src="scripts/controllers/clientes.js"></script>
-        <script src="scripts/controllers/quienes-somos.js"></script>
-        <script src="scripts/controllers/historia.js"></script>
-        <script src="scripts/controllers/servicios.js"></script>
-        <script src="scripts/controllers/directorio.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/slides.js"></script>
+    <script src="scripts/controllers/infos.js"></script>
+    <script src="scripts/controllers/ubicacion.js"></script>
+    <script src="scripts/controllers/noticias.js"></script>
+    <script src="scripts/controllers/clientes.js"></script>
+    <script src="scripts/controllers/quienes-somos.js"></script>
+    <script src="scripts/controllers/historia.js"></script>
+    <script src="scripts/controllers/servicios.js"></script>
+    <script src="scripts/controllers/directorio.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
