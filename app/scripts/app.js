@@ -124,9 +124,19 @@ angular
         }
     };
     
+    var usersLoginState = {
+        name: 'users-login',
+        url: '/users-login',
+        templateUrl: 'views/users-login.html',
+        controller: 'UsersLoginCtrl',
+        controllerAs: 'users-login',
+        title: 'Login'
+    };
+    
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(clientesState);
+    $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })
 .run(function($rootScope, $state, $cookies, $location, $window, envservice) {
