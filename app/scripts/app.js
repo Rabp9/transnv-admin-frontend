@@ -144,7 +144,7 @@ angular
         $('.navbar-toggle').click();
     });
     
-    // $rootScope.$route = $route;
+    $rootScope.$state = $state;
     
     if ($cookies.get('transnv-token')) {
         $rootScope.logged = true;
@@ -200,11 +200,12 @@ angular
         }
     });
     
-    /*
-    $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
-        $rootScope.title = $route.current.title;
+    $rootScope.$on('$stateChangeSuccess', 
+    function(event, toState, toParams, fromState, fromParams){ 
+        $rootScope.title = toState.title;
     });
 
+    /*
     $rootScope.$on('$routeChangeError', function() {
     });
     
