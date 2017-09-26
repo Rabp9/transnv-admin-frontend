@@ -37,10 +37,10 @@
                     Usuario: {{ user.username }}
                 </li>
                 <li>
-                    <a ng-class="{active: $route.current.controllerAs === 'infoGeneral'}" ng-href="#/info-general">Información General</a>
+                    <a ui-sref="infos">Información General</a>
                 </li>
                 <li>
-                    <a ng-class="{active: $route.current.controllerAs === 'productos'}" ng-href="#/productos">Productos</a>
+                    <a ui-sref="clientes">Clientes</a>
                 </li>
                 <li>
                     <a ng-class="{active: $route.current.controllerAs === 'servicios'}" ng-href="#/servicios">Servicios</a>
@@ -85,11 +85,11 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: $route.current.controllerAs === 'infoGeneral'}">
-                            <a ng-href="#/info-general">Información General</a>
+                        <li>
+                            <a ui-sref="infos">Información General</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'productos'}">
-                            <a ng-href="#/productos">Productos</a>
+                        <li>
+                            <a ui-sref="clientes">Clientes</a>
                         </li>
                         <li ng-class="{active: $route.current.controllerAs === 'servicios'}">
                             <a ng-href="#/servicios">Servicios</a>
@@ -125,9 +125,7 @@
                     <button type="button" class="close" ng-click="message_root.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     {{ message_root.text }} 
                 </div>
-                <div ng-view>
-
-                </div>
+                <ui-view ng-hide='layout.loading' ></ui-view>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -155,6 +153,7 @@
     <script src="bower_components/angular-scrollable-table/angular-scrollable-table.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -170,6 +169,8 @@
     <script src="scripts/controllers/historia.js"></script>
     <script src="scripts/controllers/servicios.js"></script>
     <script src="scripts/controllers/directorio.js"></script>
+    <script src="scripts/services/oauthhttpinterceptor.js"></script>
+    <script src="scripts/services/envservice.js"></script>
     <!-- endbuild -->
 </body>
 </html>

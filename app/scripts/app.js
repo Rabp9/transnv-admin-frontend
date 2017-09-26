@@ -24,7 +24,8 @@ angular
     'scrollable-table',
     'ui.router'
 ])
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.interceptors.push('oauthHttpInterceptor');
     var mainState = {
         name: 'main',
         url: '/',
@@ -33,6 +34,15 @@ angular
         controllerAs: 'main',
         title: 'Home'
     };  
+    
+    var infosState = {
+        name: 'infos',
+        url: '/infos',
+        templateUrl: 'views/infos.html',
+        controller: 'InfosCtrl',
+        controllerAs: 'infos',
+        title: 'Información General'
+    };
     
     var clientesState = {
         name: 'clientes',
@@ -115,11 +125,99 @@ angular
     };
     
     $stateProvider.state(mainState);
-    $stateProvider.state(quienesSomosState);
-    $stateProvider.state(historiaState);
-    $stateProvider.state(serviciosState);
-    $stateProvider.state(noticiasState);
-    $stateProvider.state(directorioState);
-    $stateProvider.state(ubicacionState);
+    $stateProvider.state(infosState);
+    $stateProvider.state(clientesState);
     $urlRouterProvider.when('', '/');
+})
+.run(function($rootScope, $state, $cookies, $location, $window, envservice) {
+    angular.module('transnvAdminFrontendApp').path_location = envservice.getHost();
+    $rootScope.path_location = envservice.getHost();
+    
+    $('#dvMessageRoot').removeClass('dvHidden');
+    $rootScope.tinymceOptions = {
+        toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | fontsizeselect | fontselect ",
+        fontsize_formats: "8pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 20pt 21pt 22pt 23pt 24pt 25pt 26pt 27pt 28pt",
+        plugins: 'lists autolink textcolor colorpicker link media preview table code',
+        language_url : '/scripts/langs_tinymce/es.js'
+    };
+    $('.nav a').on('click', function(){
+        $('.navbar-toggle').click();
+    });
+    
+    // $rootScope.$route = $route;
+    
+    if ($cookies.get('transnv-token')) {
+        $rootScope.logged = true;
+        $rootScope.user = $cookies.getObject('transnv-user');
+    } else {
+        $rootScope.logged = false;
+    }
+    
+    $rootScope.$on('$stateChangeStart', 
+    function(event, toState, toParams, fromState, fromParams, options) {
+        if (fromState.name === '' && toState.name === 'usersLogin') {
+            $('#topbar-wrapper').addClass('ng-hide');
+            $('#wrapper').addClass('inLogin');
+            if ($rootScope.user !== undefined) {
+                $location.path('/');
+            }
+        } else if (fromState.name === ''  && toState.name !== 'usersLogin') {
+            $('#sidebar-wrapper').css('display', 'block');
+            $('#wrapper').addClass('toggled');
+            if ($rootScope.user === undefined) {
+                $('#sidebar-wrapper').css('display', 'none');
+                $('#wrapper').removeClass('toggled');
+                $location.path('/users-login');
+            }
+        } else if (fromState.name !== 'usersLogin' && toState.name === 'usersLogin') {
+            if ($rootScope.user !== undefined) {
+                $location.path('/');
+            } else {
+                $('#sidebar-wrapper').css('display', 'none');
+                $('#wrapper').removeClass('toggled');
+            }
+        } else if (fromState.name === 'usersLogin' && toState.name !== 'usersLogin') {
+            if ($rootScope.user === undefined) {
+                $location.path('/users-login');
+            } else {
+                $('#topbar-wrapper').removeClass('ng-hide');
+                $('#sidebar-wrapper').css('display', 'block');
+                $('#wrapper').addClass('toggled');
+            }
+        }
+        if ($rootScope.user !== undefined) {
+            if ($rootScope.user.rol.permisos.search(toState.name) >= 0) {
+                $rootScope.message_root = null;
+            } else {
+                if (toState.name !== 'main' && toState.name !== 'usersLogin') {
+                    event.preventDefault();
+                    $rootScope.message_root = {
+                        type: 'error',
+                        text: 'No tiene permisos'
+                    };
+                }
+            }
+        }
+    });
+    
+    /*
+    $rootScope.$on('$routeChangeSuccess', function(currentRoute, previousRoute) {
+        $rootScope.title = $route.current.title;
+    });
+
+    $rootScope.$on('$routeChangeError', function() {
+    });
+    
+    $rootScope.logout = function() {
+        if (confirm('¿Está seguro de cerrar sesión?')) {
+            $cookies.remove('inexdeo-user');
+            $cookies.remove('inexdeo-token');
+            $rootScope.user = undefined;
+            $('#topbar-wrapper').addClass('ng-hide');
+            $('#wrapper').addClass('inLogin');
+            $rootScope.message_root = [];
+            $location.path('/users-login');
+        }
+    };
+    */
 });
