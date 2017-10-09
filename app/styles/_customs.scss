@@ -9,11 +9,11 @@
         &::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             border-radius: 10px;
-            background-color: $color-cuartario;
+            background-color: $color-black;
         }
         &::-webkit-scrollbar {
             width: 8px;
-            background-color: $color-cuartario;
+            background-color: $color-black;
         }
         &::-webkit-scrollbar-thumb {
             border-radius: 10px;

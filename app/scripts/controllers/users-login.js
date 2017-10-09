@@ -8,14 +8,13 @@
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('UsersLoginCtrl', function ($scope, UsersService, $cookies, $location, $rootScope) {
+.controller('UsersLoginCtrl', function ($scope, usersservice, $cookies, $location, $rootScope, $utilsViewService) {
     
     $scope.loginUser = function(user, boton) {
         $('#' + boton).text('Login...');
-        $('#' + boton).addClass('disabled');
-        $('#' + boton).prop('disabled', true);
+        $utilsViewService.disable('#' + boton);
         
-        UsersService.login(user, function(data) {
+        usersservice.login(user, function(data) {
             if (!data.user) {
                 $scope.message = data.message;
             } else {
@@ -25,14 +24,8 @@ angular.module('transnvAdminFrontendApp')
                 $('#wrapper').removeClass('inLogin');
                 $location.path('/');
             }
-        }, function(data) {
-            $('#' + boton).removeClass('disabled');
-            $('#' + boton).prop('disabled', false);
-            $('#' + boton).text('Login');
-            $scope.message =  {
-                type: 'error',
-                text: 'Nombre de usuario o contraseña incorrecta'
-            };
+        }, function(error) {
+            $scope.message = error.data;
         });
     };
     
