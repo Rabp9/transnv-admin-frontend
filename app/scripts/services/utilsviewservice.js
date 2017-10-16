@@ -8,7 +8,7 @@
  * Factory in the transnvAdminFrontendApp.
  */
 angular.module('transnvAdminFrontendApp')
-.factory('$utilsViewService', function () {
+.factory('$utilsviewservice', function () {
     return {
         enable: function(id) {
             $(id).removeClass('disabled');

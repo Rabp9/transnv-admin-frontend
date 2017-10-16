@@ -1,0 +1,51 @@
+<form novalidate angular-validator angular-validator-submit="saveCliente(cliente, 'btnSaveCliente', imagen_preview)" name="ClientesAdd">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Cliente</h4>
+    </div>
+    <div class="modal-body modal-body-overflow">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="txtRazonSocial">Razón Social</label>
+                    <input id="txtRazonSocial" class="form-control" type="text" ng-model="cliente.razon_social"
+                        name="clienteRazonSocial" required required-message="'Este campo es requerido'" validate-on="blur" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="txtCiudad">Ciudad</label>
+                    <input id="txtCiudad" class="form-control" type="text" ng-model="cliente.ciudad" name="clienteCiudad" />
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="txtRuc">RUC</label>
+                    <input id="txtRuc" class="form-control" type="text" ng-model="cliente.ruc"
+                        name="clienteRuc" maxlength="11" minlength="11" 
+                        ng-pattern="'[0-9]+'"
+                        invalid-message="'Sólo permitido números'" validate-on="blur"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="flImagen">Imagen</label>
+                    <input id="flImagen" type="file" class="form-control" ngf-select="preview_imagen($file, $invalidFiles)" 
+                        accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="clienteImagen" />
+                    <img ng-hide="imagen_preview === undefined || imagen_preview === null" class="img-responsive" ng-src="{{tmp_path + '/' + imagen_preview}}" alt="imagen previa" >
+                    <span ng-hide="imagen_preview === undefined || imagen_preview === null">Imagen cargada correctamente</span>
+                    <span ng-show="loading_imagen">Cargando...</span>
+                    <span ng-show="!loading && loading_imagen === null">No fue posible cargar la Imagen</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveCliente" class="btn btn-success" type="submit">Guardar Cliente</button>
+    </div>
+</form>

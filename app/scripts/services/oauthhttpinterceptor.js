@@ -11,7 +11,7 @@ angular.module('transnvAdminFrontendApp')
 .factory('oauthHttpInterceptor', function ($cookies) {
     return {
         request: function (config) {
-            config.headers.Authorization = 'Bearer ' + $cookies.get('inexdeo-token');
+            config.headers.Authorization = 'Bearer ' + $cookies.get('transnv-token');
             return config;
         }
     };

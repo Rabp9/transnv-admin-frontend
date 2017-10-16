@@ -8,7 +8,7 @@
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('InfosEditCtrl', function ($scope, info, $uibModalInstance, infosservice, $utilsViewService) {
+.controller('InfosEditCtrl', function ($scope, info, $uibModalInstance, infosservice, $utilsviewservice) {
     $scope.info = $.extend(true, {}, info);
 
     $scope.cancel = function() {
@@ -17,16 +17,14 @@ angular.module('transnvAdminFrontendApp')
 
     $scope.saveInfo = function(info, boton) {
         $('#' + boton).text('Guardando...');
-        $utilsViewService.disable('#' + boton);
+        $utilsviewservice.disable('#' + boton);
         
         infosservice.save(info, function(data) {
-            $utilsViewService.enable('#' + boton);
+            $utilsviewservice.enable('#' + boton);
             $uibModalInstance.close(data);
-            console.log(data);
         }, function(error) {
-            $utilsViewService.enable('#' + boton);
-            $uibModalInstance.close(error);
-            console.log(error);
+            $utilsviewservice.enable('#' + boton);
+            $uibModalInstance.close(error.data);
         });
     };
 });

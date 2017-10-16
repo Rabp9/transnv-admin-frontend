@@ -2,9 +2,9 @@
     <li><a href="#">Inicio</a></li>
     <li>Información General</li>
 </ol>
-<div class="alert alert-dismissible" ng-class="{'alert-success': message.type === 'success', 'alert-danger': message.type === 'error'}" role="alert" ng-show="message.type !== undefined">
-    <button type="button" class="close" ng-click="message.type = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    {{ message.text }} 
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
 </div>
 <h2>Información General</h2>
 <hr>
@@ -22,7 +22,7 @@
                 <tbody>
                     <tr ng-hide="!loading"><td colspan="3">Cargando...</td></tr>
                     <tr ng-show="!loading && infos.length === 0"><td colspan="3">No hay registros</td></tr>
-                    <tr ng-repeat="info in infos" row-id="{{ info.dato }}">
+                    <tr ng-show="!loading && infos.length !== 0" ng-repeat="info in infos" row-id="{{ info.dato }}">
                         <td>{{ info.dato }}</td>
                         <td><span ng-bind-html="info.value | limitTo: 90"></span><span ng-if="info.value.length > 90">...</span></td>
                         <td><button type="button" class="btn btn-primary btn-sm" ng-click="showInfosEdit(info, $event)"><span class="glyphicon glyphicon-pencil"></span></button></td>

@@ -8,11 +8,12 @@
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('UsersLoginCtrl', function ($scope, usersservice, $cookies, $location, $rootScope, $utilsViewService) {
+.controller('UsersLoginCtrl', function ($scope, usersservice, $cookies, $location, 
+    $rootScope, $utilsviewservice) {
     
     $scope.loginUser = function(user, boton) {
         $('#' + boton).text('Login...');
-        $utilsViewService.disable('#' + boton);
+        $utilsviewservice.disable('#' + boton);
         
         usersservice.login(user, function(data) {
             if (!data.user) {

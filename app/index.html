@@ -37,13 +37,13 @@
                     Usuario: {{ user.username }}
                 </li>
                 <li>
-                    <a ui-sref="infos">Información General</a>
+                    <a ui-sref-active="active" ui-sref="infos">Información General</a>
                 </li>
                 <li>
-                    <a ui-sref="clientes">Clientes</a>
+                    <a ui-sref-active="active" ui-sref="clientes">Clientes</a>
                 </li>
                 <li>
-                    <a ng-class="{active: $route.current.controllerAs === 'servicios'}" ng-href="#/servicios">Servicios</a>
+                    <a ui-sref-active="active" ui-sref="servicios">Servicios</a>
                 </li>
                 <li>
                     <a ng-class="{active: $route.current.controllerAs === 'proyectos'}" ng-href="#/proyectos">Proyectos</a>
@@ -85,10 +85,10 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li>
+                        <li ng-class="{active: $route.current.controllerAs === 'infos'}">
                             <a ui-sref="infos">Información General</a>
                         </li>
-                        <li>
+                        <li ng-class="{active: $route.current.controllerAs === 'clientes'}">
                             <a ui-sref="clientes">Clientes</a>
                         </li>
                         <li ng-class="{active: $route.current.controllerAs === 'servicios'}">
@@ -154,6 +154,7 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="bower_components/angular-ui-sortable/sortable.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -176,6 +177,9 @@
     <script src="scripts/services/utilsviewservice.js"></script>
     <script src="scripts/controllers/infos-edit.js"></script>
     <script src="scripts/services/infosservice.js"></script>
+    <script src="scripts/services/clientesservice.js"></script>
+    <script src="scripts/controllers/clientes-add.js"></script>
+    <script src="scripts/controllers/clientes-edit.js"></script>
     <!-- endbuild -->
 </body>
 </html>

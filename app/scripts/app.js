@@ -22,7 +22,8 @@ angular
     'thatisuday.ng-image-gallery',
     'angularValidator',
     'scrollable-table',
-    'ui.router'
+    'ui.router',
+    'angular-toArrayFilter'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('oauthHttpInterceptor');
@@ -53,6 +54,15 @@ angular
         title: 'Clientes'
     };
     
+    var serviciosState = {
+        name: 'servicios',
+        url: '/servicios',
+        templateUrl: 'views/servicios.html',
+        controller: 'ServiciosCtrl',
+        controllerAs: 'servicios',
+        title: 'Servicios'
+    };
+    /*
     var directorioState = {
         name: 'directorio',
         url: '/directorio',
@@ -123,7 +133,7 @@ angular
             }
         }
     };
-    
+    */
     var usersLoginState = {
         name: 'users-login',
         url: '/users-login',
@@ -136,6 +146,7 @@ angular
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(clientesState);
+    $stateProvider.state(serviciosState);
     $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })

@@ -1,1 +1,56 @@
-<p>This is the clientes view.</p>
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Clientes</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Clientes</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1"> 
+        <button type="button" class="btn btn-primary" ng-click="showClientesAdd($event)"><span class="glyphicon glyphicon-plus"></span> Nuevo Cliente</button>
+        <div class="radio">
+            <label>
+                <input type="radio" ng-model="search.estado_id" value=""> 
+                Todos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="1"> 
+                Activos
+            </label>
+            <label>
+                <input type="radio" ng-model="search.estado_id" value="2"> 
+                Inactivos
+            </label>
+        </div>
+        <scrollable-table watch="clientes" class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th sortable-header col="id">Código</th>
+                        <th sortable-header col="razon_social">Razón Social</th>
+                        <th sortable-header col="ciudad">Ciudad</th>
+                        <th sortable-header col="ruc">RUC</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-show="loading"><td colspan="5">Cargando...</td></tr>
+                    <tr ng-show="!loading && clientes.length === 0"><td colspan="5">No hay registros</td></tr>
+                    <tr ng-show="!loading && clientes.length !== 0" ng-class="{'danger': cliente.estado_id === 2}" ng-repeat="cliente in clientes | toArray:false | filter:search" row-id="{{ cliente.id }}">
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.razon_social }}</td>
+                        <td>{{ cliente.ciudad }}</td>
+                        <td>{{ cliente.ruc }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="showClientesEdit(cliente, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
+                            <button type="button" class="btn btn-warning btn-sm" ng-click="removeCliente(cliente, $event)"><span class="glyphicon glyphicon-remove"></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </scrollable-table>
+    </div>
+</div>

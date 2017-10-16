@@ -8,21 +8,26 @@
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('InfosCtrl', function ($scope, infosservice, $uibModal, $utilsViewService) {
+.controller('InfosCtrl', function ($scope, infosservice, $uibModal, $utilsviewservice) {
     var search = ['quienes_somos_mensaje', 'historia_mensaje', 'directorio_mensaje',
     'ubicacion_mensaje', 'telefono', 'email', 'facebook_link', 'transnv_resumen', 
     'ubicacion_codigo', 'enlace_1_titulo', 'enlace_2_titulo', 'enlace_3_titulo',
     'enlace_1_link', 'enlace_2_link', 'enlace_3_link', 'twitter_link', 'direccion', 'copyright'];
     
-    $scope.loading = true;
+    $scope.getInfos = function() {
+        $scope.loading = true;
+        infosservice.getDataByData(search, function(data) {
+            $scope.infos = data.infos;
+            $scope.loading = false;
+        }); 
+    };
     
-    infosservice.getDataByData(search, function(data) {
-        $scope.infos = data.infos;
-        $scope.loading = false;
-    });
+    $scope.init = function() {
+        $scope.getInfos();
+    };
     
     $scope.showInfosEdit = function(info, event) {
-        $utilsViewService.disable(event.currentTarget);
+        $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceEdit = $uibModal.open({
             templateUrl: 'views/infos-edit.html',
@@ -34,13 +39,13 @@ angular.module('transnvAdminFrontendApp')
                 }
             }
         });
-        $utilsViewService.enable(event.currentTarget);
+        $utilsviewservice.enable(event.currentTarget);
         
         modalInstanceEdit.result.then(function (data) {
-            infosservice.getDataByData(search, function(data) {
-                $scope.infos = data.infos;
-            });
-            $scope.message = data.message;
+            $scope.getInfos();
+            $scope.message = data;
         });
     };
+    
+    $scope.init();
 });
