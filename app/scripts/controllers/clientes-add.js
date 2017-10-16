@@ -27,7 +27,7 @@ angular.module('transnvAdminFrontendApp')
         if (imagen_preview !== null) {
             cliente.imagen = imagen_preview;
         }
-        
+        cliente.estado_id = 1;
         clientesservice.save(cliente, function(data) {
             $utilsviewservice.enable('#' + boton);
             $uibModalInstance.close(data);

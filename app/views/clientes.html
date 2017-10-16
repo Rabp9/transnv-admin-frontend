@@ -46,7 +46,8 @@
                         <td>{{ cliente.ruc }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" ng-click="showClientesEdit(cliente, $event)"><span class="glyphicon glyphicon-pencil"></span></button>
-                            <button type="button" class="btn btn-warning btn-sm" ng-click="removeCliente(cliente, $event)"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-show="cliente.estado_id === 1" type="button" class="btn btn-danger btn-sm" ng-click="showClientesDelete(cliente)" title="Deshabilitar"><span class="glyphicon glyphicon-remove"></span></button>
+                            <button ng-show="cliente.estado_id === 2" type="button" class="btn btn-default btn-sm" ng-click="showClientesActivate(cliente)" title="Activar"><span class="glyphicon glyphicon-ok"></span></button>
                         </td>
                     </tr>
                 </tbody>

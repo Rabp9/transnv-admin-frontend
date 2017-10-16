@@ -67,18 +67,26 @@ angular.module('transnvAdminFrontendApp')
         });
     };
     
-    $scope.removeCliente = function(cliente, event) {
-        $utilsviewservice.disable(event.currentTarget);
-        
-        if (confirm('¿Desea eliminar este cliente?')) {
-            clientesservice.remove({id: cliente.id}, function(data) {
-                $scope.message = data.message; 
-                $scope.loading = true;
-                $scope.getClientes();
+    $scope.showClientesDelete = function(cliente) {
+        if (confirm('¿Está seguro de deshabilitar el cliente?')) {
+            cliente.estado_id = 2;
+            clientesservice.save(cliente, function(data) {
+                $scope.message = data;
+            }, function(error) {
+                cliente.estado_id = 1;
             });
         }
-        
-        $utilsviewservice.enable(event.currentTarget);
+    };
+    
+    $scope.showClientesActivate = function(cliente) {
+        if (confirm('¿Está seguro de activar el cliente?')) {
+            cliente.estado_id = 1;
+            clientesservice.save(cliente, function(data) {
+                $scope.message = data;
+            }, function(error) {
+                cliente.estado_id = 2;
+            });
+        }
     };
     
     $scope.init();
