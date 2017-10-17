@@ -80,6 +80,25 @@ angular
         controllerAs: 'noticias',
         title: 'Noticias'
     };
+    
+    var rolesState = {
+        name: 'roles',
+        url: '/roles',
+        templateUrl: 'views/roles.html',
+        controller: 'RolesCtrl',
+        controllerAs: 'roles',
+        title: 'Roles'
+    };
+    
+    var usersState = {
+        name: 'users',
+        url: '/users',
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl',
+        controllerAs: 'users',
+        title: 'Usuarios'
+    };
+    
     /*
     var directorioState = {
         name: 'directorio',
@@ -167,6 +186,8 @@ angular
     $stateProvider.state(clientesState);
     $stateProvider.state(serviciosState);
     $stateProvider.state(noticiasState);
+    $stateProvider.state(rolesState);
+    $stateProvider.state(usersState);
     $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })

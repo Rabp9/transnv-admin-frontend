@@ -22,7 +22,7 @@ angular.module('transnvAdminFrontendApp')
             method: 'POST',
             url: envservice.getHost() + 'infos/getDataByData.json',
         },
-        previewFondo: {
+/*        previewFondo: {
             method: 'POST',
             url: envservice.getHost() + 'infos/previewFondo.json',
             transformRequest: angular.identity,
@@ -31,6 +31,12 @@ angular.module('transnvAdminFrontendApp')
         saveFondo: {
             method: 'POST',
             url: envservice.getHost() + 'infos/saveFondo.json',
+        },*/
+        upload: {
+            method: 'POST',
+            url: envservice.getHost() + 'infos/upload/.json',
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
         }
     });
 });

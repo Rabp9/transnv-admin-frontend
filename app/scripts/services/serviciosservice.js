@@ -23,13 +23,12 @@ angular.module('transnvAdminFrontendApp')
         remove: {
             method: 'POST',
             url: envservice.getHost() + 'servicios/remove/.json'
-        },       
+        },
         upload: {
             method: 'POST',
             url: envservice.getHost() + 'servicios/upload/.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
-        },
-        
+        }
     });
 });

@@ -1,1 +1,51 @@
-<p>This is the nosotros view.</p>
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li>Nosotros</li>
+</ol>
+<div class="alert alert-dismissible" ng-class="{'alert-success': message.code === 200, 'alert-danger': message.code !== 200 }" role="alert" ng-show="message.code !== undefined">
+    <button type="button" class="close" ng-click="message.code = undefined" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ message.message }} 
+</div>
+<h2>Nosotros</h2>
+<hr>
+<form ng-submit="saveInfos(infos, 'btnSaveNosotros')">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtaQuienesSomos">¿Quiénes Somos?</label>
+                <textarea id="txtaQuienesSomos" class="form-control textarea-3x"
+                    ng-model="infos.quienes_somos" ui-tinymce="tinymcePagesOptions" name="infoQuienesSomos"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtaMision">Misión</label>
+                <textarea id="txtaMision" class="form-control textarea-3x"
+                    ng-model="infos.mision" ui-tinymce="tinymcePagesOptions" name="infoMIsion"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtaVision">Visión</label>
+                <textarea id="txtaVision" class="form-control textarea-3x"
+                    ng-model="infos.vision" ui-tinymce="tinymcePagesOptions" name="infoMIsion"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtaHistoria">Historia</label>
+                <textarea id="txtaHistoria" class="form-control textarea-3x"
+                    ng-model="infos.historia" ui-tinymce="tinymcePagesOptions" name="infoHistoria"></textarea>
+            </div>
+        </div>
+    </div>     
+    <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+                    accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
+    <button id="btnSaveNosotros" class="btn btn-primary pull-right" type="submit">Guardar Información</button>
+</form>

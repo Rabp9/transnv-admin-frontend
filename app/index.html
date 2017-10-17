@@ -61,10 +61,10 @@
                     <a ui-sref-active="active" ui-sref="cabeceras">Cabeceras</a>
                 </li>
                 <li>
-                    <a ng-class="{active: $route.current.controllerAs === 'roles'}" ng-href="#/roles">Roles</a>
+                    <a ui-sref-active="active" ui-sref="roles">Roles</a>
                 </li>
                 <li>
-                    <a ng-class="{active: $route.current.controllerAs === 'users'}" ng-href="#/users">Usuarios</a>
+                    <a ui-sref-active="active" ui-sref="users">Usuarios</a>
                 </li>
                 <li>
                     <a style="cursor: pointer;" ng-click="logout()">Log out</a>
@@ -193,6 +193,14 @@
     <script src="scripts/controllers/noticias-add.js"></script>
     <script src="scripts/controllers/noticias-edit.js"></script>
     <script src="scripts/services/noticiasservice.js"></script>
+    <script src="scripts/controllers/roles.js"></script>
+    <script src="scripts/controllers/roles-add.js"></script>
+    <script src="scripts/controllers/roles-edit.js"></script>
+    <script src="scripts/services/rolesservice.js"></script>
+    <script src="scripts/services/controllersservice.js"></script>
+    <script src="scripts/controllers/users.js"></script>
+    <script src="scripts/controllers/users-add.js"></script>
+    <script src="scripts/controllers/users-edit.js"></script>
     <!-- endbuild -->
 </body>
 </html>

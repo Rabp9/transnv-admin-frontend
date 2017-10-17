@@ -11,11 +11,11 @@ angular.module('transnvAdminFrontendApp')
 .controller('ClientesCtrl', function ($scope, clientesservice, $uibModal, 
     $utilsviewservice) {
         
-    $scope.loading = true;
     $scope.search = {};
     $scope.search.estado_id = '1';
     
     $scope.getClientes = function() {
+        $scope.loading = true;
         clientesservice.getAdmin(function(data) {
             $scope.clientes = data.clientes;
             $scope.loading = false;
