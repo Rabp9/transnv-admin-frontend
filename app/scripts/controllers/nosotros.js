@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name transnvAdminFrontendApp.controller:NoticiasCtrl
+ * @name transnvAdminFrontendApp.controller:NosotrosCtrl
  * @description
- * # NoticiasCtrl
+ * # NosotrosCtrl
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('NoticiasCtrl', function ($scope, noticiasservice, $uibModal, 
+  .controller('NosotrosCtrl', function ($scope, noticiasservice, $uibModal, 
     $utilsviewservice) {
         
     $scope.loading = true;

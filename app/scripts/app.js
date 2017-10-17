@@ -45,6 +45,15 @@ angular
         title: 'Información General'
     };
     
+    var nosotrosState = {
+        name: 'nosotros',
+        url: '/nosotros',
+        templateUrl: 'views/nosotros.html',
+        controller: 'NosotrosCtrl',
+        controllerAs: 'nosotros',
+        title: 'Nosotros'
+    };
+    
     var clientesState = {
         name: 'clientes',
         url: '/clientes',
@@ -61,6 +70,15 @@ angular
         controller: 'ServiciosCtrl',
         controllerAs: 'servicios',
         title: 'Servicios'
+    };
+    
+    var noticiasState = {
+        name: 'noticias',
+        url: '/noticias',
+        templateUrl: 'views/noticias.html',
+        controller: 'NoticiasCtrl',
+        controllerAs: 'noticias',
+        title: 'Noticias'
     };
     /*
     var directorioState = {
@@ -145,8 +163,10 @@ angular
     
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
+    $stateProvider.state(nosotrosState);
     $stateProvider.state(clientesState);
     $stateProvider.state(serviciosState);
+    $stateProvider.state(noticiasState);
     $stateProvider.state(usersLoginState);
     $urlRouterProvider.when('', '/');
 })

@@ -1,0 +1,60 @@
+<form novalidate angular-validator angular-validator-submit="saveNoticia(noticia, 'btnSaveNoticia', portada_preview)" name="NoticiasAdd">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Nuevo Noticia</h4>
+    </div>
+    <div class="modal-body modal-body-overflow">
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="form-group">
+                    <label for="txtTitulo">Título</label>
+                    <input id="txtTitulo" class="form-control" type="text" ng-model="noticia.titulo"
+                        name="noticiaTitulo" required required-message="'Este campo es requerido'" validate-on="blur" />
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="txtSubtitulo">Sub Título</label>
+                    <input id="txtSubtitulo" class="form-control" type="text" ng-model="noticia.subtitulo" name="noticiaSubtitulo" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="txtaResumen">Resumen</label>
+                    <textarea id="txtaResumen" class="form-control textarea-2x"
+                        ng-model="noticia.resumen" ui-tinymce="tinymceOptions" name="noticiaResumen"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="txtaContenido">Contenido</label>
+                    <textarea id="txtaContenido" class="form-control textarea-3x"
+                        ng-model="noticia.contenido" ui-tinymce="tinymcePagesOptions" name="noticiaContenido"></textarea>
+                    <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
+                        accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="flPortada">Portada</label>
+                    <input id="flPortada" type="file" class="form-control" ngf-select="preview_portada($file, $invalidFiles)" 
+                        accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="noticiaPortada" />
+                    <img ng-hide="portada_preview === undefined || portada_preview === null" class="img-responsive" ng-src="{{tmp_path + '/' + portada_preview}}" alt="imagen previa" >
+                    <span ng-hide="portada_preview === undefined || portada_preview === null">Imagen cargada correctamente</span>
+                    <span ng-show="loading_portada">Cargando...</span>
+                    <span ng-show="!loading && loading_portada === null">No fue posible cargar la Imagen</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveNoticia" class="btn btn-success" type="submit">Guardar Noticia</button>
+    </div>
+</form>

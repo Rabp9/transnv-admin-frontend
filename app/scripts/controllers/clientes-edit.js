@@ -12,7 +12,6 @@ angular.module('transnvAdminFrontendApp')
     clientesservice, $rootScope, $utilsviewservice) {
     
     $scope.loading = false;
-    /*var start = 0;*/
     var changed = false;
     $scope.tmp_path = $rootScope.path_location + 'img' + '/clientes'; 
     

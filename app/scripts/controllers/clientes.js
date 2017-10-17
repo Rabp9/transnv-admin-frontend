@@ -30,7 +30,7 @@ angular.module('transnvAdminFrontendApp')
         $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceAdd = $uibModal.open({
-            templateUrl: 'views/Clientes-add.html',
+            templateUrl: 'views/clientes-add.html',
             controller: 'ClientesAddCtrl',
             backdrop: false,
             size: 'lg'
