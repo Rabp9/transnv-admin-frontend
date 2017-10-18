@@ -54,6 +54,15 @@ angular
         title: 'Nosotros'
     };
     
+    var slidesState = {
+        name: 'slides',
+        url: '/slides',
+        templateUrl: 'views/slides.html',
+        controller: 'SlidesCtrl',
+        controllerAs: 'slides',
+        title: 'Slides'
+    };
+    
     var clientesState = {
         name: 'clientes',
         url: '/clientes',
@@ -183,6 +192,7 @@ angular
     $stateProvider.state(mainState);
     $stateProvider.state(infosState);
     $stateProvider.state(nosotrosState);
+    $stateProvider.state(slidesState);
     $stateProvider.state(clientesState);
     $stateProvider.state(serviciosState);
     $stateProvider.state(noticiasState);

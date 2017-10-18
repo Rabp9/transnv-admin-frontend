@@ -2,43 +2,44 @@
 
 /**
  * @ngdoc function
- * @name transnvAdminFrontendApp.controller:ClientesEditCtrl
+ * @name transnvAdminFrontendApp.controller:SlidesEditCtrl
  * @description
- * # ClientesEditCtrl
+ * # SlidesEditCtrl
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('ClientesEditCtrl', function ($scope, cliente, $uibModalInstance, 
-    clientesservice, $rootScope, $utilsviewservice) {
-    
-    $scope.loading = false;
-    var changed = false;
-    $scope.tmp_path = $rootScope.path_location + 'img' + '/clientes'; 
+.controller('SlidesEditCtrl', function ($scope, slide, $uibModalInstance, slidesservice,
+    $rootScope, $utilsviewservice) {
+        
+    $scope.tmp_path = $rootScope.path_location + 'img/slides'; 
+    $scope.imagen_preview = slide.imagen;
     var tmp_path = $rootScope.path_location + 'tmp' + '/';
+    var changed = false;
     
-    function init() {
-        clientesservice.get({id: cliente.id}, function(data) {
-            $scope.cliente = data.cliente;
-            $scope.imagen_preview = $scope.cliente.imagen;
-            $scope.cliente.imagen = null;
+    $scope.init = function() {
+        $scope.loading = true;
+        slidesservice.get({id: slide.id}, function(data) {
+            $scope.slide = data.slide;
+            $scope.imagen_preview = $scope.slide.imagen;
+            $scope.slide.imagen = null;
+            $scope.loading = false;
         });
-    }
-    
+    };
     
     $scope.cancel = function() {
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.saveCliente = function(cliente, boton, imagen_preview) {
+    $scope.saveSlide = function(slide, boton, imagen_preview) {
         $('#' + boton).text('Guardando...');
         $utilsviewservice.disable('#' + boton);
         
         if (changed) {
             if (imagen_preview !== null) {
-                cliente.imagen = imagen_preview;
+                slide.imagen = imagen_preview;
             }
         }
-        clientesservice.save(cliente, function(data) {
+        slidesservice.save(slide, function(data) {
             $utilsviewservice.enable('#' + boton);
             $uibModalInstance.close(data);
         }, function(err) {
@@ -52,7 +53,7 @@ angular.module('transnvAdminFrontendApp')
         var fd = new FormData();
         fd.append('file', imagen);
         
-        clientesservice.previewImagen(fd, function(data) {
+        slidesservice.previewImagen(fd, function(data) {
             $scope.imagen_preview = data.filename;
             $scope.loading = false;
             $scope.tmp_path = tmp_path;
@@ -63,5 +64,5 @@ angular.module('transnvAdminFrontendApp')
         });
     };
     
-    init();
+    $scope.init();
 });
