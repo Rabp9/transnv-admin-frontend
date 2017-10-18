@@ -8,7 +8,10 @@
  * Controller of the transnvAdminFrontendApp
  */
 angular.module('transnvAdminFrontendApp')
-.controller('UsersCtrl', function ($scope, usersservice, $uibModal) {
+.controller('UsersCtrl', function ($scope, usersservice, $uibModal, $utilsviewservice) {
+    
+    $scope.search = {};
+    $scope.search.estado_id = '1';
     
     $scope.getUsers = function() {
         $scope.loading = true;
@@ -23,8 +26,7 @@ angular.module('transnvAdminFrontendApp')
     };
     
     $scope.showUsersAdd = function(event) {
-        $(event.currentTarget).addClass('disabled');
-        $(event.currentTarget).prop('disabled', true);
+        $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceAdd = $uibModal.open({
             templateUrl: 'views/users-add.html',
@@ -32,18 +34,16 @@ angular.module('transnvAdminFrontendApp')
             backdrop: false
         });
         
-        modalInstanceAdd.result.then(function (data) {
-            $scope.users.push(data.user);
-            $scope.message = data.message;
-        });
+        $utilsviewservice.enable(event.currentTarget);
         
-        $(event.currentTarget).removeClass('disabled');
-        $(event.currentTarget).prop('disabled', false);
+        modalInstanceAdd.result.then(function (data) {
+            $scope.getUsers();
+            $scope.message = data;
+        });
     };
     
     $scope.showUsersEdit = function(user, event) {
-        $(event.currentTarget).addClass('disabled');
-        $(event.currentTarget).prop('disabled', true);
+        $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceEdit = $uibModal.open({
             templateUrl: 'views/users-edit.html',
@@ -56,15 +56,34 @@ angular.module('transnvAdminFrontendApp')
             }
         });
         
-        modalInstanceEdit.result.then(function (data) {
-            UsersService.getAdmin(function(data) {
-                $scope.users = data.users;
-            });
-            $scope.message = data.message;
-        });
+        $utilsviewservice.enable(event.currentTarget);
         
-        $(event.currentTarget).removeClass('disabled');
-        $(event.currentTarget).prop('disabled', false);
+        modalInstanceEdit.result.then(function (data) {
+            $scope.getUsers();
+            $scope.message = data;
+        });
+    };
+    
+    $scope.showUsersDelete = function(user) {
+        if (confirm('¿Está seguro de deshabilitar el usuario?')) {
+            user.estado_id = 2;
+            usersservice.save(user, function(data) {
+                $scope.message = data;
+            }, function(error) {
+                user.estado_id = 1;
+            });
+        }
+    };
+    
+    $scope.showUsersActivate = function(user) {
+        if (confirm('¿Está seguro de activar el rol?')) {
+            user.estado_id = 1;
+            usersservice.save(user, function(data) {
+                $scope.message = data;
+            }, function(error) {
+                user.estado_id = 2;
+            });
+        }
     };
     
     $scope.init();
