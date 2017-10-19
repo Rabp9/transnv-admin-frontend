@@ -117,69 +117,15 @@ angular
         title: 'Directorio'
     };
     
-    /*
-    var quienesSomosState = {
-        name: 'quienes-somos',
-        url: '/quienes-somos',
-        templateUrl: 'views/quienes-somos.html',
-        controller: 'QuienesSomosCtrl',
-        controllerAs: 'quienes-somos',
-        title: '¿Quiénes Somos?'
+    var cabecerasState = {
+        name: 'cabeceras',
+        url: '/cabeceras',
+        templateUrl: 'views/cabeceras.html',
+        controller: 'CabecerasCtrl',
+        controllerAs: 'cabeceras',
+        title: 'Cabeceras'
     };
     
-    var historiaState = {
-        name: 'historia',
-        url: '/historia',
-        templateUrl: 'views/historia.html',
-        controller: 'HistoriaCtrl',
-        controllerAs: 'historia',
-        title: 'Historia'
-    };
-    
-    var directorioState = {
-        name: 'directorio',
-        url: '/directorio',
-        templateUrl: 'views/directorio.html',
-        controller: 'DirectorioCtrl',
-        controllerAs: 'directorio',
-        title: 'Directorio Telefónico'
-    };
-    
-    var ubicacionState = {
-        name: 'ubicacion',
-        url: '/ubicacion',
-        templateUrl: 'views/ubicacion.html',
-        controller: 'UbicacionCtrl',
-        controllerAs: 'ubicacion',
-        title: 'Ubicación'
-    };
-    
-    var noticiasState = {
-        name: 'noticias',
-        url: '/noticias/{id}',
-        templateUrl: 'views/noticias.html',
-        controller: 'NoticiasCtrl',
-        controllerAs: 'noticias',
-        params: {
-            id: {
-                value: '1'
-            }
-        }
-    };
-    
-    var serviciosState = {
-        name: 'servicios',
-        url: '/servicios/{id}',
-        templateUrl: 'views/servicios.html',
-        controller: 'ServiciosCtrl',
-        controllerAs: 'servicios',
-        params: {
-            id: {
-                value: '1'
-            }
-        }
-    };
-    */
     var usersLoginState = {
         name: 'users-login',
         url: '/users-login',
@@ -197,6 +143,7 @@ angular
     $stateProvider.state(serviciosState);
     $stateProvider.state(noticiasState);
     $stateProvider.state(directorioState);
+    $stateProvider.state(cabecerasState);
     $stateProvider.state(rolesState);
     $stateProvider.state(usersState);
     $stateProvider.state(usersLoginState);
@@ -278,14 +225,10 @@ angular
         $rootScope.title = toState.title;
     });
 
-    /*
-    $rootScope.$on('$routeChangeError', function() {
-    });
-    
     $rootScope.logout = function() {
         if (confirm('¿Está seguro de cerrar sesión?')) {
-            $cookies.remove('inexdeo-user');
-            $cookies.remove('inexdeo-token');
+            $cookies.remove('transnv-user');
+            $cookies.remove('transnv-token');
             $rootScope.user = undefined;
             $('#topbar-wrapper').addClass('ng-hide');
             $('#wrapper').addClass('inLogin');
@@ -293,5 +236,4 @@ angular
             $location.path('/users-login');
         }
     };
-    */
 });

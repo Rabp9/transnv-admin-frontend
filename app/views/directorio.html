@@ -31,7 +31,7 @@
                     <tr>
                         <th sortable-header col="id">Código</th>
                         <th sortable-header col="nombre_completo">Nombre Completo</th>
-                        <th sortable-header col="numero">Teléfono</th>
+                        <th sortable-header col="telefono">Teléfono</th>
                         <th sortable-header col="email">Email</th>
                         <th>Acciones</th>
                     </tr>
@@ -42,7 +42,7 @@
                     <tr ng-show="!loading && contactos.length !== 0" ng-class="{'danger': contacto.estado_id === 2}" ng-repeat="contacto in contactos | toArray:false | filter:search" row-id="{{ contacto.id }}">
                         <td>{{ contacto.id }}</td>
                         <td>{{ contacto.nombre_completo }}</td>
-                        <td>{{ contacto.numero }}</td>
+                        <td>{{ contacto.telefono }}</td>
                         <td>{{ contacto.email }}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" ng-click="showContactosEdit(contacto, $event)"><span class="glyphicon glyphicon-pencil"></span></button>

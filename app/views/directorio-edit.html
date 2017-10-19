@@ -1,7 +1,7 @@
-<form novalidate angular-validator angular-validator-submit="saveCliente(cliente, 'btnSaveContacto', imagen_preview)" name="ContactosEdit">
+<form novalidate angular-validator angular-validator-submit="saveContacto(contacto, 'btnSaveContacto', imagen_preview)" name="ContactosEdit">
     <div class="modal-header">
         <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Modificar Cliente</h4>
+        <h4 class="modal-title">Modificar Contacto</h4>
     </div>
     <div class="modal-body modal-body-overflow">
         <div class="row">
@@ -23,7 +23,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="emEmail">Email</label>
-                    <input id="emEmail" class="form-control" type="text" ng-model="contacto.email"
+                    <input id="emEmail" class="form-control" type="email" ng-model="contacto.email"
                         name="contactoEmail" invalid-message="'Ingrese un correo electrónico'" validate-on="blur"/>
                 </div>
             </div>
@@ -44,6 +44,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
-        <button id="btnSaveContacto" class="btn btn-success" type="submit">Guardar Cliente</button>
+        <button id="btnSaveContacto" class="btn btn-success" type="submit">Guardar Contacto</button>
     </div>
 </form>

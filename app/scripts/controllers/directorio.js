@@ -30,10 +30,9 @@ angular.module('transnvAdminFrontendApp')
         $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceAdd = $uibModal.open({
-            templateUrl: 'views/contactos-add.html',
-            controller: 'ContactosAddCtrl',
-            backdrop: false,
-            size: 'lg'
+            templateUrl: 'views/directorio-add.html',
+            controller: 'DirectorioAddCtrl',
+            backdrop: false
         });
         
         $utilsviewservice.enable(event.currentTarget);
@@ -48,10 +47,9 @@ angular.module('transnvAdminFrontendApp')
         $utilsviewservice.disable(event.currentTarget);
         
         var modalInstanceEdit = $uibModal.open({
-            templateUrl: 'views/contactos-edit.html',
-            controller: 'ContactosEditCtrl',
+            templateUrl: 'views/directorio-edit.html',
+            controller: 'DirectorioEditCtrl',
             backdrop: false,
-            size: 'lg',
             resolve: {
                 contacto: function() {
                     return contacto;
