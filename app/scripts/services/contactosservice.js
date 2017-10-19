@@ -2,21 +2,21 @@
 
 /**
  * @ngdoc service
- * @name transnvAdminFrontendApp.clientesservice
+ * @name transnvAdminFrontendApp.contactosservice
  * @description
- * # clientesservice
+ * # contactosservice
  * Factory in the transnvAdminFrontendApp.
  */
 angular.module('transnvAdminFrontendApp')
-.factory('clientesservice', function ($resource, envservice) {
-    return $resource(envservice.getHost() + 'clientes/:id.json', {}, {
+.factory('contactosservice', function ($resource, envservice) {
+    return $resource(envservice.getHost() + 'contactos/:id.json', {}, {
         getAdmin: {
             method: 'GET',
-            url: envservice.getHost() + 'clientes/getAdmin/.json'
+            url: envservice.getHost() + 'contactos/getAdmin/.json'
         },
         previewImagen: {
             method: 'POST',
-            url: envservice.getHost() + 'clientes/previewImagen/.json',
+            url: envservice.getHost() + 'contactos/previewImagen/.json',
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         }

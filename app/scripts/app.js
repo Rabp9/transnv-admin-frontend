@@ -108,16 +108,16 @@ angular
         title: 'Usuarios'
     };
     
-    /*
     var directorioState = {
         name: 'directorio',
         url: '/directorio',
-        templateUrl: 'views/clientes.html',
-        controller: 'ClientesCtrl',
-        controllerAs: 'clientes',
-        title: 'Clientes'
+        templateUrl: 'views/directorio.html',
+        controller: 'DirectorioCtrl',
+        controllerAs: 'directorio',
+        title: 'Directorio'
     };
     
+    /*
     var quienesSomosState = {
         name: 'quienes-somos',
         url: '/quienes-somos',
@@ -196,6 +196,7 @@ angular
     $stateProvider.state(clientesState);
     $stateProvider.state(serviciosState);
     $stateProvider.state(noticiasState);
+    $stateProvider.state(directorioState);
     $stateProvider.state(rolesState);
     $stateProvider.state(usersState);
     $stateProvider.state(usersLoginState);
