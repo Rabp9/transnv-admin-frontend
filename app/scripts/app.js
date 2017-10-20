@@ -175,13 +175,13 @@ angular
     
     $rootScope.$on('$stateChangeStart', 
     function(event, toState, toParams, fromState, fromParams, options) {
-        if (fromState.name === '' && toState.name === 'usersLogin') {
+        if (fromState.name === '' && toState.name === 'users-login') {
             $('#topbar-wrapper').addClass('ng-hide');
             $('#wrapper').addClass('inLogin');
             if ($rootScope.user !== undefined) {
                 $location.path('/');
             }
-        } else if (fromState.name === ''  && toState.name !== 'usersLogin') {
+        } else if (fromState.name === ''  && toState.name !== 'users-login') {
             $('#sidebar-wrapper').css('display', 'block');
             $('#wrapper').addClass('toggled');
             if ($rootScope.user === undefined) {
@@ -189,14 +189,14 @@ angular
                 $('#wrapper').removeClass('toggled');
                 $location.path('/users-login');
             }
-        } else if (fromState.name !== 'usersLogin' && toState.name === 'usersLogin') {
+        } else if (fromState.name !== 'users-login' && toState.name === 'users-login') {
             if ($rootScope.user !== undefined) {
                 $location.path('/');
             } else {
                 $('#sidebar-wrapper').css('display', 'none');
                 $('#wrapper').removeClass('toggled');
             }
-        } else if (fromState.name === 'usersLogin' && toState.name !== 'usersLogin') {
+        } else if (fromState.name === 'users-login' && toState.name !== 'users-login') {
             if ($rootScope.user === undefined) {
                 $location.path('/users-login');
             } else {
@@ -209,7 +209,7 @@ angular
             if ($rootScope.user.rol.permisos.search(toState.name) >= 0) {
                 $rootScope.message_root = null;
             } else {
-                if (toState.name !== 'main' && toState.name !== 'usersLogin') {
+                if (toState.name !== 'main' && toState.name !== 'users-login') {
                     event.preventDefault();
                     $rootScope.message_root = {
                         type: 'error',

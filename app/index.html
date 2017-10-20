@@ -30,7 +30,7 @@
             <ul class="sidebar-nav" ng-cloak>
                 <li class="sidebar-brand">
                     <a class="navbar-brand" ng-href="#/">
-                        <img class="img-responsive" src="images/logo.jpg" alt="In Excelsis Deo"/>
+                        <img class="img-responsive" src="images/logo.png" alt="In Excelsis Deo"/>
                     </a>
                 </li>
                 <li style="color: gray;">
@@ -91,31 +91,37 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                     <ul class="nav navbar-nav">
-                        <li ng-class="{active: $route.current.controllerAs === 'infos'}">
+                        <li ui-sref-active="active">
                             <a ui-sref="infos">Información General</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'clientes'}">
+                        <li ui-sref-active="active">
+                            <a ui-sref="nosotros">Nosotros</a>
+                        </li>
+                        <li ui-sref-active="active">
+                            <a ui-sref="slides">Slides</a>
+                        </li>
+                        <li ui-sref-active="active">
                             <a ui-sref="clientes">Clientes</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'servicios'}">
-                            <a ng-href="#/servicios">Servicios</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="servicios">Servicios</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'proyectos'}">
-                            <a ng-href="#/proyectos">Proyectos</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="noticias">Noticias</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'galeria'}">
-                            <a ng-href="#/galeria">Galería</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="directorio">Directorio</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'fondos'}">
-                            <a ng-href="#/fondos">Fondos</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="cabeceras">Cabeceras</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'roles'}">
-                            <a ng-href="#/roles">Roles</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="roles">Roles</a>
                         </li>
-                        <li ng-class="{active: $route.current.controllerAs === 'users'}">
-                            <a ng-href="#/users">Usuarios</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="users">Usuarios</a>
                         </li>
-                        <li>
+                        <li ui-sref-active="active">
                             <a style="cursor: pointer;" ng-click="logout()">Log out</a>
                         </li>
                     </ul>
@@ -208,8 +214,8 @@
     <script src="scripts/controllers/directorio-edit.js"></script>
     <script src="scripts/services/contactosservice.js"></script>
     <script src="scripts/controllers/cabeceras.js"></script>
-    <script src="scripts/controllers/cabeceras-add.js"></script>
     <script src="scripts/controllers/cabeceras-edit.js"></script>
+    <script src="scripts/services/cabecerasservice.js"></script>
     <!-- endbuild -->
 </body>
 </html>

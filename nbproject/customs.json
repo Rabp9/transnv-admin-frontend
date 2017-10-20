@@ -8,6 +8,12 @@
         },
         "ngf-select": {
             "context": "input"
+        },
+        "ui-sref": {
+            "context": "a"
+        },
+        "ui-sref-active": {
+            "context": "li"
         }
     }
 }

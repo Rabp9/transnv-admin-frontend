@@ -1,1 +1,25 @@
-<p>This is the cabeceras-edit view.</p>
+<form novalidate angular-validator angular-validator-submit="saveCabecera(cabecera, 'btnSaveCabecera', imagen_preview)" name="cabecerasEdit">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modificar Cabecera</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtDescripcion">Descripción</label>
+            <input id="txtDescripcion" class="form-control" type="text" ng-model="cabecera.descripcion" name="infoValue" readonly />
+        </div>
+        <div class="form-group">
+            <label for="flImagen">Imagen</label>
+            <input id="flImagen" type="file" class="form-control" ngf-select="preview_imagen($file, $invalidFiles)" 
+                accept="image/*" ngf-max-height="15000" ngf-max-size="10MB" name="cabeceraImagen" />
+            <img ng-hide="imagen_preview === undefined || imagen_preview === null" class="img-responsive" ng-src="{{tmp_path + '/' + imagen_preview}}" alt="imagen previa" >
+            <span ng-hide="imagen_preview === undefined || imagen_preview === null">Imagen cargada correctamente</span>
+            <span ng-show="loading_imagen">Cargando...</span>
+            <span ng-show="!loading && loading_imagen === null">No fue posible cargar la Imagen</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancel()">Cerrar</button>
+        <button id="btnSaveCabecera" class="btn btn-success" type="submit">Guardar Cabecera</button>
+    </div>
+</form>
