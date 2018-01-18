@@ -425,6 +425,18 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          // tinymce
+          expand: true,
+          cwd: 'bower_components/tinymce/',
+          src: ['plugins/**', 'themes/**', 'skins/**'],
+          dest: '<%= yeoman.dist %>/scripts/'
+        }, {
+          // tinymce
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts/',
+          src: 'langs_tinymce/*',
+          dest: '<%= yeoman.dist %>/scripts/'
         }]
       },
       styles: {
