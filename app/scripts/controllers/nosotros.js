@@ -11,7 +11,7 @@ angular.module('transnvAdminFrontendApp')
 .controller('NosotrosCtrl', function ($scope, infosservice, $utilsviewservice,
     $rootScope) {
         
-    var search = ['quienes_somos', 'mision', 'vision', 'historia'];
+    var search = ['quienes_somos', 'mision', 'vision', 'historia', 'nuestra_flota'];
     $scope.infos = {};
     $scope.tmp_path_pages = $rootScope.path_location + 'img' + '/infos/'; 
     
