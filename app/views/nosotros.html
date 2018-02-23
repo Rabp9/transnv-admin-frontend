@@ -54,6 +54,15 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="txtaNuestroPersonal">Nuestra Personal</label>
+                <textarea id="txtaNuestroPersonal" class="form-control textarea-3x"
+                    ng-model="infos.nuestro_personal" ui-tinymce="tinymcePagesOptions" name="infoNuestroPersonal"></textarea>
+            </div>
+        </div>
+    </div>
     <input style="display: none;" id="flImagen" type="file" class="form-control" ngf-select="upload($file, $invalidFiles)" 
                     accept="image/*" ngf-max-height="5000" ngf-max-size="10MB" name="imagen"/>
     <button id="btnSaveNosotros" class="btn btn-primary pull-right" type="submit">Guardar Información</button>

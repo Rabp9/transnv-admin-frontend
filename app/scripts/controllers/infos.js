@@ -14,7 +14,7 @@ angular.module('transnvAdminFrontendApp')
     'enlace_1_titulo', 'enlace_2_titulo', 'enlace_3_titulo', 'enlace_1_link',
     'enlace_2_link', 'enlace_3_link', 'twitter_link', 'direccion', 'copyright',
     'quienes_somos', 'mision', 'vision', 'historia', 'ubicacion_lat_long', 
-    'nuestra_flota_mensaje', 'nuestro_personal_mensaje'];
+    'nuestra_flota_mensaje', 'nuestro_personal_mensaje', 'certificaciones', 'polizas_seguros'];
     
     $scope.getInfos = function() {
         $scope.loading = true;
