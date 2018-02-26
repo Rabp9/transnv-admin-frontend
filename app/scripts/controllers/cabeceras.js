@@ -11,7 +11,8 @@ angular.module('transnvAdminFrontendApp')
 .controller('CabecerasCtrl', function ($scope, cabecerasservice, $uibModal, $utilsviewservice) {
     var search = ['quienes-somos-cabecera', 'historia-cabecera', 'servicio-cabecera', 
         'noticia-cabecera', 'directorio-cabecera', 'ubicacion-cabecera', 'quienes-somos-img', 
-        'historia-img', 'directorio-img', 'ubicacion-img'];
+        'historia-img', 'directorio-img', 'ubicacion-img', 'nuestra-flota-cabecera',
+        'nuestro-personal-cabecera', 'certificaciones-cabecera'];
     
     $scope.getCabeceras = function() {
         $scope.loading = true;
